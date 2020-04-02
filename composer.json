@@ -2,7 +2,7 @@
     "name": "klipper/http-foundation",
     "type": "library",
     "description": "Http Foundation component of Klipper",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "François Pluchino",
