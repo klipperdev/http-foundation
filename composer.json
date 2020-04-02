@@ -1,0 +1,27 @@
+{
+    "name": "klipper/http-foundation",
+    "type": "library",
+    "description": "Http Foundation component of Klipper",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@klipper.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0",
+        "symfony/http-foundation": "^4.3.0"
+    },
+    "autoload": {
+        "psr-4": { "Klipper\\Component\\HttpFoundation\\": "" },
+        "exclude-from-classmap": [
+            "**/Tests/"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}
