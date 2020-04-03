@@ -55,7 +55,7 @@ abstract class RequestUtil
     public static function restoreFakeHost(string $url, bool $keepHost = true): string
     {
         if (isset($_SERVER['REAL_HTTP_HOST'])) {
-            $endWithSlash =  '/' === substr($url, strlen($url) - 1);
+            $endWithSlash = '/' === substr($url, \strlen($url) - 1);
             $url = rtrim($url, '/').'/';
             $realHost = $_SERVER['REAL_HTTP_HOST'];
             $addHostPrefix = $keepHost && false === strpos(parse_url($url, PHP_URL_PATH), '/_');
