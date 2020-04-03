@@ -51,8 +51,6 @@ abstract class RequestUtil
      *
      * @param string $url      The URL
      * @param bool   $keepHost Check if the host must be added in the path
-     *
-     * @return string
      */
     public static function restoreFakeHost(string $url, bool $keepHost = true): string
     {
@@ -104,8 +102,6 @@ abstract class RequestUtil
      * Check if the language parameter is present in the request.
      *
      * @param Request $request The request
-     *
-     * @return bool
      */
     public static function hasRequestLanguage(Request $request): bool
     {
@@ -116,8 +112,6 @@ abstract class RequestUtil
      * Check if the language parameter is forced in the request.
      *
      * @param Request $request The request
-     *
-     * @return bool
      */
     public static function isForcedLanguage(Request $request): bool
     {
@@ -128,8 +122,6 @@ abstract class RequestUtil
      * Check if the request is with a current language or not.
      *
      * @param Request $request The request
-     *
-     * @return bool
      */
     public static function isCurrentLanguage(Request $request): bool
     {
@@ -144,8 +136,6 @@ abstract class RequestUtil
      *
      * @param Request $request    The request
      * @param array   $parameters The parameters
-     *
-     * @return array
      */
     public static function getLangParameters(Request $request, array $parameters = []): array
     {
