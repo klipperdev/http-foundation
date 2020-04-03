@@ -58,7 +58,7 @@ final class RequestUtilTest extends TestCase
         $_SERVER['HTTP_HOST'] = $host.(\in_array($port, ['80', '443'], true) ? '' : ':'.$port);
         $_SERVER['REQUEST_URI'] = '';
 
-        $this->assertSame($expected, RequestUtil::restoreFakeHost($url, $keepHost));
+        static::assertSame($expected, RequestUtil::restoreFakeHost($url, $keepHost));
 
         unset($_SERVER['REAL_HTTP_HOST'], $_SERVER['REAL_REQUEST_URI'], $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
     }
@@ -71,6 +71,6 @@ final class RequestUtilTest extends TestCase
      */
     public function testRestoreFakeHostWithoutFakeHost($url, $keepHost): void
     {
-        $this->assertSame($url, RequestUtil::restoreFakeHost($url, $keepHost));
+        static::assertSame($url, RequestUtil::restoreFakeHost($url, $keepHost));
     }
 }
