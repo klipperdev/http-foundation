@@ -9,6 +9,8 @@
             "email": "francois.pluchino@klipper.dev"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^7.4.0",
         "symfony/http-foundation": "^4.3.0"
