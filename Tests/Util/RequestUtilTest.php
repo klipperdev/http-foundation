@@ -42,12 +42,8 @@ final class RequestUtilTest extends TestCase
 
     /**
      * @dataProvider getRestoreFakeHostData
-     *
-     * @param string $url
-     * @param bool   $keepHost
-     * @param string $expected
      */
-    public function testRestoreFakeHost($url, $keepHost, $expected): void
+    public function testRestoreFakeHost(string $url, bool $keepHost, string $expected): void
     {
         $currentHost = 'foo.test.tld:9050';
         $host = explode(':', $currentHost)[0];
@@ -65,11 +61,8 @@ final class RequestUtilTest extends TestCase
 
     /**
      * @dataProvider getRestoreFakeHostData
-     *
-     * @param string $url
-     * @param bool   $keepHost
      */
-    public function testRestoreFakeHostWithoutFakeHost($url, $keepHost): void
+    public function testRestoreFakeHostWithoutFakeHost(string $url, bool $keepHost): void
     {
         static::assertSame($url, RequestUtil::restoreFakeHost($url, $keepHost));
     }
