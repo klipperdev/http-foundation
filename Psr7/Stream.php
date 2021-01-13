@@ -62,7 +62,7 @@ class Stream implements StreamInterface
         if (\is_resource($body)) {
             $this->stream = $body;
             $meta = stream_get_meta_data($this->stream);
-            $this->seekable = $meta['seekable'] && 0 === fseek($this->stream, 0, \SEEK_CUR);
+            $this->seekable = $meta['seekable'] && 0 === fseek($this->stream, 0, SEEK_CUR);
             $this->readable = isset(self::READ_WRITE_HASH['read'][$meta['mode']]);
             $this->writable = isset(self::READ_WRITE_HASH['write'][$meta['mode']]);
             $this->uri = $this->getMetadata('uri');
