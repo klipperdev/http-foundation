@@ -76,72 +76,80 @@ abstract class RequestUtil
     }
 
     /**
-     * @param Request     $request The request
-     * @param null|string $default The default locale
+     * @param null|Request $request The request
+     * @param null|string  $default The default locale
      *
      * @return mixed
      */
-    public static function getLanguage(Request $request, ?string $default = null)
+    public static function getLanguage(?Request $request, ?string $default = null)
     {
+        if (null === $request) {
+            return \Locale::getDefault();
+        }
+
         return $request->query->get('lang', $default ?? $request->getLocale());
     }
 
     /**
      * Get the language parameter of request.
      *
-     * @param Request $request The request
+     * @param null|Request $request The request
      *
      * @return mixed
      */
-    public static function getRequestLanguage(Request $request)
+    public static function getRequestLanguage(?Request $request)
     {
-        return $request->query->get('lang');
+        return null !== $request ? $request->query->get('lang') : \Locale::getDefault();
     }
 
     /**
      * Check if the language parameter is present in the request.
      *
-     * @param Request $request The request
+     * @param null|Request $request The request
      */
-    public static function hasRequestLanguage(Request $request): bool
+    public static function hasRequestLanguage(?Request $request): bool
     {
-        return $request->query->has('lang');
+        return null !== $request ? $request->query->has('lang') : false;
     }
 
     /**
      * Check if the language parameter is forced in the request.
      *
-     * @param Request $request The request
+     * @param null|Request $request The request
      */
-    public static function isForcedLanguage(Request $request): bool
+    public static function isForcedLanguage(?Request $request): bool
     {
-        return (bool) $request->query->get('force_lang', false);
+        return null !== $request ? (bool) $request->query->get('force_lang', false) : false;
     }
 
     /**
      * Check if the request is with a current language or not.
      *
-     * @param Request $request The request
+     * @param null|Request $request The request
      */
-    public static function isCurrentLanguage(Request $request): bool
+    public static function isCurrentLanguage(?Request $request): bool
     {
         $hasLanguage = static::hasRequestLanguage($request);
 
         return !$hasLanguage
-            || ($hasLanguage && $request->getLocale() === static::getRequestLanguage($request));
+            || ($hasLanguage && null !== $request && $request->getLocale() === static::getRequestLanguage($request));
     }
 
     /**
      * Add the request query parameter for language.
      *
-     * @param Request $request    The request
-     * @param array   $parameters The parameters
+     * @param null|Request $request    The request
+     * @param array        $parameters The parameters
      */
-    public static function getLangParameters(Request $request, array $parameters = []): array
+    public static function getLangParameters(?Request $request, array $parameters = []): array
     {
         if (!isset($parameters['force_lang'])
                 && !isset($parameters['_availables'])
                 && !static::hasRequestLanguage($request)) {
+            return $parameters;
+        }
+
+        if (null === $request) {
             return $parameters;
         }
 
