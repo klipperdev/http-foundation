@@ -143,6 +143,9 @@ class Stream implements StreamInterface
         return null;
     }
 
+    /**
+     * @return false|int
+     */
     public function tell()
     {
         if (false === $result = ftell($this->stream)) {

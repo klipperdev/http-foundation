@@ -124,7 +124,7 @@ class Psr7WrappedRequest implements ServerRequestInterface
         throw new \InvalidArgumentException('Uploaded files cannot be modified');
     }
 
-    public function getParsedBody()
+    public function getParsedBody(): array
     {
         return $this->message->request->all();
     }
@@ -139,6 +139,12 @@ class Psr7WrappedRequest implements ServerRequestInterface
         return $this->message->attributes->all();
     }
 
+    /**
+     * @param mixed      $name
+     * @param null|mixed $default
+     *
+     * @return mixed
+     */
     public function getAttribute($name, $default = null)
     {
         return $this->message->attributes->get($name, $default);
